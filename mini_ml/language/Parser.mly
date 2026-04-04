@@ -2,19 +2,8 @@
     open Ast
 %}
 
-/* 1. Định nghĩa độ ưu tiên (Từ thấp đến cao) */
 %nonassoc IN ELSE ARROW
 %left SEMICOLON
-%left OR
-%left AND
-%left EQ NEQ LT GT LEQ GEQ
-%left CONCAT
-%right APPEND
-%right CAT
-%left ADD SUB
-%left MUL DIV MOD
-%nonassoc NOT NEG  /* Độ ưu tiên cao nhất cho toán tử đơn */
-
 
 %start <Ast.t> main
 

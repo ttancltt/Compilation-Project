@@ -11,9 +11,6 @@ type t =
   | Func of t Util.Environment.t * string * Ast.expr
   | List of t list
 
-val pp_no_extend : Format.formatter -> t -> unit
-(** Pretty-printer for a {!t} that never extends the functions*)
-
 val pp : Format.formatter -> t -> unit
 (** Pretty-printer for a {!t} *)
 

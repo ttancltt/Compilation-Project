@@ -1,6 +1,6 @@
 open Ast
 
-type t =
+type t = (*Definition de la type des valeurs*)
   | Int of int
   | Bool of bool
   | String of string
@@ -9,21 +9,7 @@ type t =
   | Func of t Util.Environment.t * string * expr
   | List of t list
 
-let rec pp_no_extend fmt = function
-  | Int i -> Format.fprintf fmt "%d" i
-  | Bool b -> Format.fprintf fmt "%b" b
-  | String s -> Format.fprintf fmt "%s" s
-  | Unit -> Format.fprintf fmt "()"
-  | Func_built_in _ | Func _ -> Format.fprintf fmt "<fun>"
-  | List l ->
-      Format.fprintf fmt "[";
-      List.iteri
-        (fun i e ->
-          Format.fprintf fmt "%s%a" (if i = 0 then "" else ";") pp_no_extend e)
-        l;
-      Format.fprintf fmt "]"
-
-let rec pp_no_func_env fmt = function
+let rec pp_no_func_env fmt = function (*This function prints a value without its environment *)
   | Int i -> Format.fprintf fmt "%d" i
   | Bool b -> Format.fprintf fmt "%b" b
   | String s -> Format.fprintf fmt "%s" s
@@ -39,7 +25,7 @@ let rec pp_no_func_env fmt = function
         l;
       Format.fprintf fmt "]"
 
-let rec pp fmt = function
+let rec pp fmt = function (*This function prints a value with its environment *)
   | Func (env, n, e) ->
       Format.fprintf fmt "@[<h>%a@] fun %s -> %a"
         (Util.Environment.pp_environment pp_no_func_env)
@@ -52,7 +38,7 @@ let rec pp fmt = function
       Format.fprintf fmt "]"
   | expr -> pp_no_func_env fmt expr
 
-let func_of_built_in = function
+let func_of_built_in = function (*This function converts a built-in function to a value of type t *)
   | Add ->
       Func_built_in
         (function
