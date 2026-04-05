@@ -18,6 +18,7 @@ rule token = parse
     | "+"               { ADD }
     | "-"               { SUB }
     | "*"               { MUL }
+    | "^"              { POW }
     | "/"               { DIV }
     | "%" | "mod"       { MOD }
     | "&&"              { AND }

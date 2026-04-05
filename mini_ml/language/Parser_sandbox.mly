@@ -26,6 +26,7 @@ app_expr:
 
 %inline binop:
 | ADD   { Add }
+| POW   { Pow }
 
 %inline built_in:
 | L_PAR b = binop R_PAR { b }

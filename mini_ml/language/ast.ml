@@ -55,6 +55,7 @@ type built_in =
   | Add
   | Sub
   | Mul
+  | Pow
   | Div
   | Mod
   | And
@@ -142,6 +143,7 @@ let string_of_built_in = function
   | Add -> "( + )"
   | Sub -> "( - )"
   | Mul -> "( * )"
+  | Pow -> "( ^ )"
   | Div -> "( / )"
   | Mod -> "( % )"
   | And -> "( && )"

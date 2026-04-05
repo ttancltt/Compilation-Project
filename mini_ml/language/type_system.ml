@@ -1,6 +1,8 @@
 open Ast
 
-let get_type_generic = function TFunc (l, _, _) | TList (l, _) -> l | _ -> []
+let get_type_generic = function TFunc (l, _, _)  (*this function returns the list of generic type variables in a function type, generic type means type variables that are not bound by a lambda abstraction*)
+| TList (l, _) -> l 
+| _ -> []
 
 let get_free_type_var t =
   let rec aux = function
@@ -16,7 +18,7 @@ let get_free_type_var t =
 (* [substitute_univ_in_type univ t target] will replace any occurrence of [TUniv univ] in [target] with [t] and return the result.
 
    For example [substitute_univ_in_type 0 TInt (TFunc([],TUniv 0,TFunc([] TUniv 1,TUniv 0))] will return [TFunc([],TInt,TFunc([] TUniv 1,TInt))]*)
-let rec substitute_univ_in_type univ typ = function
+let rec substitute_univ_in_type univ typ = function (*typ có các kiểu : TFunc, TList, TUniv, TInt *)
   | TFunc (a, t1, t2) -> (
       match typ with
       | TUniv n ->
@@ -46,7 +48,7 @@ let rec substitute_univ_in_type univ typ = function
 let apply_subst_in_type subst t =
   List.fold_left (fun acc (m, t) -> substitute_univ_in_type m t acc) t subst
 
-let substitute_constraint univ typ (t1, t2) =
+let substitute_constraint univ typ (t1, t2) = (*This function substitutes a universal type variable with a specific type in a constraint. For example, [substitute_constraint 0 TInt (TFunc([], TUniv 0, TFunc([], TUniv 1, TUniv 0)))] will return [TFunc([], TInt, TFunc([], TUniv 1, TInt))]*)
   (substitute_univ_in_type univ typ t1, substitute_univ_in_type univ typ t2)
 
 (* [normalise_type floor target] replace any universal type with an index higher than [floor] in target such that no hole remains, and returns the list of replacement made. Useful for obtaining clean types after typing an expression.

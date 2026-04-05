@@ -10,4 +10,6 @@ Cách input được phân tích thành AST
 
 Vd : thien@DESKTOP-ENGQKK1:/mnt/c/Users/thien/Downloads/mini_ml$ ./visualiser.out -from-stdin "let x = (100)"
 
+Cú pháp đúng để test với visualiser.out:
 
+./visualiser.out  "./examples/correct/simple_syntax/fibo.mml"

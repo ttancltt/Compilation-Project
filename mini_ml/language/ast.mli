@@ -67,6 +67,7 @@ type built_in =
   | Add  (** Addition of integers : int -> int -> int *)
   | Sub  (** Substraction of integers : int -> int -> int *)
   | Mul  (** Multiplication of integers : int -> int -> int *)
+  | Pow  (** Power of integers : int -> int -> int *)
   | Div  (** Quotient of integers : int -> int -> int *)
   | Mod  (** Modulus of integers : int -> int -> int *)
   | And  (** Boolean and : bool -> bool -> bool *)

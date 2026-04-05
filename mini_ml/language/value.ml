@@ -66,6 +66,10 @@ let func_of_built_in = function (*This function converts a built-in function to 
               | Int v2 -> Int (v1 * v2)
               | _ -> failwith "second argument of Mul is not an integer")
         | _ -> failwith "first argument of Mul is not an integer")
+  |Pow -> Func_built_in (function
+        | Int a -> Func_built_in (function
+            | Int b -> Int (int_of_float ((float_of_int a) ** (float_of_int b)))
+            | _ -> failwith "second argument of Pow is not an integer"))
   | Div ->
       Func_built_in
         (function

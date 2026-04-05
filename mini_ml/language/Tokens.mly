@@ -37,5 +37,6 @@
 %token L_SQ
 %token R_SQ
 %token REC
+%token POW
 
 %%
