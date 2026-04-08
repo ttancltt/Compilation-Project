@@ -31,3 +31,9 @@ app_expr:
 %inline built_in:
 | L_PAR b = binop R_PAR { b } (*Chỗ này có cú pháp : (b) *)
 | NEG   { UMin }
+
+(*Aucune priorite n'est necessaire comme les built-in ne sont pas des operateur infix dans notre langage
+Exemple :
+(+) 1 2 est analysé comme :
+App (App (Cst_func Add) (Cst_i 1)) (Cst_i 2)
+*)
